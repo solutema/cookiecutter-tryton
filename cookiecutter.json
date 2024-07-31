@@ -7,6 +7,7 @@
     "author": "Solutema SRL",
     "author_email": "info@solutema.com",
     "fullname": "",
+    "year": "{{ cookiecutter._year }}"
     "url": "https://www.solutema.com/",
     "keywords": "",
     "test_with_scenario": ""
