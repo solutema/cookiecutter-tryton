@@ -1,11 +1,17 @@
+from cookiecutter.main import cookiecutter
+import datetime
+import json
 import os
 import shutil
-from datetime import datetime
 
-current_year = datetime.now().year
+today = datetime.datetime.today()
+date = today.date().isoformat()
+year = today.year
 
-context = {{ cookiecutter }}
-context["_year"] = current_year
+extra_context = {
+        'release_date': date,
+        'year': year
+        }
 
 try:
     os.symlink('doc/index.rst', 'README.rst')
