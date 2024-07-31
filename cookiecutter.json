@@ -2,13 +2,12 @@
     "module_name": "my_module",
     "prefix": "",
     "package_name": "{% if not cookiecutter.prefix %}trytond_{{ cookiecutter.module_name }}{% else %}{{ cookiecutter.prefix }}_{{ cookiecutter.module_name }}{% endif %}",
-    "version": "{{ version }}",
+    "version": "",
     "description": "",
     "author": "Tryton",
-    "author_email": "foundation@tryton.org",
+    "author_email": "bugs@tryton.org",
     "fullname": "",
     "url": "http://www.tryton.org/",
     "keywords": "",
-    "test_with_scenario": "",
-    "_extensions": ["extensions.Version"]
+    "test_with_scenario": ""
 }

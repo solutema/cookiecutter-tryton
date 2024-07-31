@@ -26,7 +26,10 @@ def read(fname):
 
 
 def get_require_version(name):
-    require = '%s >= %s.%s, < %s.%s'
+    if minor_version % 2:
+        require = '%s >= %s.%s.dev0, < %s.%s'
+    else:
+        require = '%s >= %s.%s, < %s.%s'
     require %= (name, major_version, minor_version,
         major_version, minor_version + 1)
     return require
@@ -44,12 +47,26 @@ major_version = int(major_version)
 minor_version = int(minor_version)
 name = '{{ cookiecutter.package_name }}'
 {% if not cookiecutter.prefix %}
+download_url = 'http://downloads.tryton.org/%s.%s/' % (
+    major_version, minor_version)
 if minor_version % 2:
-    download_url = ''
-else:
-    download_url = 'http://downloads.tryton.org/%s.%s/' % (
-        major_version, minor_version)
+    version = '%s.%s.dev0' % (major_version, minor_version)
+    download_url = (
+        'hg+http://hg.tryton.org/modules/%s#egg=%s-%s' % (
+            name[8:], name, version))
 {% endif %}
+local_version = []
+if os.environ.get('CI_JOB_ID'):
+    local_version.append(os.environ['CI_JOB_ID'])
+else:
+    for build in ['CI_BUILD_NUMBER', 'CI_JOB_NUMBER']:
+        if os.environ.get(build):
+            local_version.append(os.environ[build])
+        else:
+            local_version = []
+            break
+if local_version:
+    version += '+' + '.'.join(local_version)
 requires = []
 for dep in info.get('depends', []):
     if not re.match(r'(ir|res)(\W|$)', dep):
@@ -66,6 +83,12 @@ tests_require = [get_require_version('proteus')]
 {%- else -%}
 tests_require = []
 {%- endif %}
+dependency_links = []
+if minor_version % 2:
+    dependency_links.append(
+        'https://trydevpi.tryton.org/?local_version='
+        + '.'.join(local_version)
+        {% if cookiecutter.prefix %}+ '&mirror=github'{% endif %})
 
 setup(name=name,
     version=version,
@@ -78,9 +101,9 @@ setup(name=name,
     download_url=download_url,
     project_urls={
         "Bug Tracker": 'https://bugs.tryton.org/',
-        "Documentation": 'https://docs.tryton.org/latest/modules-{{ cookiecutter.module_name|replace('_', '-') }}',
+        "Documentation": 'https://docs.tryton.org/projects/modules-{{ cookiecutter.module_name|replace('_', '-') }}',
         "Forum": 'https://www.tryton.org/forum',
-        "Source Code": 'https://code.tryton.org/tryton',
+        "Source Code": 'https://hg.tryton.org/modules/{{ cookiecutter.module_name }}',
         },
 {%- endif %}
     keywords='{{ cookiecutter.keywords }}',
@@ -127,19 +150,20 @@ setup(name=name,
         'Natural Language :: Ukrainian',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
-        'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: Implementation :: CPython',
         'Topic :: Office/Business',
         ],
     license='GPL-3',
-    python_requires='>=3.8',
+    python_requires='>=3.7',
     install_requires=requires,
     extras_require={
         'test': tests_require,
         },
+    dependency_links=dependency_links,
     zip_safe=False,
     entry_points="""
     [trytond.modules]
