@@ -7,7 +7,7 @@
     "author": "Solutema SRL",
     "author_email": "info@solutema.com",
     "fullname": "Solutema SRL",
-    "year": "{{ cookiecutter._year }}",
+    "year": "{{ cookiecutter.year }}",
     "url": "https://github.com/solutema/trytond-{{ cookiecutter.module_name }}",
     "download": "solutema",
     "keywords": "",
