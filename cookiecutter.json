@@ -6,7 +6,7 @@
     "description": "",
     "author": "Solutema SRL",
     "author_email": "info@solutema.com",
-    "fullname": "",
+    "fullname": "Solutema SRL",
     "year": "{{ cookiecutter._year }}",
     "url": "https://www.solutema.com/",
     "keywords": "",
