@@ -8,7 +8,8 @@
     "author_email": "info@solutema.com",
     "fullname": "Solutema SRL",
     "year": "{{ cookiecutter._year }}",
-    "url": "https://www.solutema.com/",
+    "url": "https://github.com/solutema/trytond-{{ cookiecutter.module_name }}",
+    "download": "solutema",
     "keywords": "",
     "test_with_scenario": ""
 }
