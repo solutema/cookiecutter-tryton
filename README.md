@@ -17,7 +17,5 @@ Quickstart
 
 Generate a Tryton module project::
 
-    cookiecutter --output-dir modules cookiecutter-module
+    cookiecutter https://github.com/solutema/cookiecutter-tryton
 
-.. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
-.. _Tox: https://tox.wiki/
