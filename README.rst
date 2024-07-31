@@ -18,7 +18,7 @@ Quickstart
 
 Generate a Tryton module project::
 
-    cookiecutter hg+https://hg.tryton.org/cookiecutter
+    cookiecutter git+https://github.com/solutema/cookiecutter-tryton
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _Drone: https://github.com/drone/drone
