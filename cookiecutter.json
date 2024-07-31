@@ -4,10 +4,10 @@
     "package_name": "{% if not cookiecutter.prefix %}trytond_{{ cookiecutter.module_name }}{% else %}{{ cookiecutter.prefix }}_{{ cookiecutter.module_name }}{% endif %}",
     "version": "",
     "description": "",
-    "author": "Tryton",
-    "author_email": "bugs@tryton.org",
+    "author": "Solutema SRL",
+    "author_email": "info@solutema.com",
     "fullname": "",
-    "url": "http://www.tryton.org/",
+    "url": "https://www.solutema.com/",
     "keywords": "",
     "test_with_scenario": ""
 }
