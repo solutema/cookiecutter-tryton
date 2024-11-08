@@ -9,6 +9,6 @@
     "fullname": "Solutema SRL",
     "url": "https://github.com/solutema/trytond-{{ cookiecutter.module_name }}",
     "download": "solutema",
-    "keywords": "",
+    "keywords": "tryton",
     "test_with_scenario": ""
 }
